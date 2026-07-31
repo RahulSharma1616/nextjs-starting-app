@@ -1,0 +1,28 @@
+{
+	"name": "routing-rendering",
+	"version": "0.1.0",
+	"private": true,
+	"scripts": {
+		"dev": "next dev",
+		"build": "next build",
+		"start": "next start",
+		"lint": "next lint",
+		"format": "biome format --write"
+	},
+	"dependencies": {
+		"react": "^19",
+		"react-dom": "^19",
+		"next": "16.2.12"
+	},
+	"devDependencies": {
+		"@biomejs/biome": "^2.5.6"
+	},
+	"allowScripts": {
+		"sharp": true,
+		"better-sqlite3": true
+	},
+	"overrides": {
+		"sharp": "0.35.3",
+		"postcss": "8.5.18"
+	}
+}
