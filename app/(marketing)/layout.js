@@ -6,9 +6,5 @@ export const metadata = {
 };
 
 export default function MarketingLayout({ children }) {
-	return (
-		<html lang="en">
-			<body>{children}</body>
-		</html>
-	);
+	return <main>{children}</main>;
 }
