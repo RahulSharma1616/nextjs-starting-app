@@ -1,5 +1,5 @@
 {
-	"name": "routing-rendering",
+	"name": "news-app",
 	"version": "0.1.0",
 	"private": true,
 	"scripts": {
@@ -23,6 +23,6 @@
 	},
 	"overrides": {
 		"sharp": "0.35.3",
-		"postcss": "8.5.18"
+		"postcss": "^8.5.23"
 	}
 }

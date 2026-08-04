@@ -1,4 +1,5 @@
 import "@/app/globals.css";
+import { getAllNews } from "@/lib/news";
 
 export const metadata = {
 	title: "Next.js Page Routing & Rendering",
@@ -6,8 +7,10 @@ export const metadata = {
 };
 
 export default function MarketingLayout({ children }) {
+	getAllNews();
+
 	return (
-		<html lang="en">
+		<html lang="en" className="hydrated">
 			<body>{children}</body>
 		</html>
 	);

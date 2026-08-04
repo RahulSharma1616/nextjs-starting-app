@@ -1,19 +1,31 @@
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { Suspense } from "react";
+import Loading from "@/app/loading";
+import { getAllNews } from "@/lib/news";
 
-import { DUMMY_NEWS } from "@/dummy-news";
+export default function NewsDetailPage({ params }) {
+	return (
+		<article className="news-article">
+			<Suspense fallback={<Loading />}>
+				<FetchAndRenderNewsDetail params={params} />
+			</Suspense>
+		</article>
+	);
+}
 
-export default async function NewsDetailPage({ params }) {
+async function FetchAndRenderNewsDetail({ params }) {
 	const { slug } = await params;
-	const newsItem = DUMMY_NEWS.find((newsItem) => newsItem.slug === slug);
+	const news = await getAllNews();
+
+	const newsItem = news.find((newsItem) => newsItem.slug === slug);
 
 	if (!newsItem) {
 		notFound();
 	}
-
 	return (
-		<article className="news-article">
+		<>
 			<header>
 				<Link
 					href={`/news/${newsItem.slug}/image`}
@@ -33,12 +45,13 @@ export default async function NewsDetailPage({ params }) {
 						style={{
 							objectFit: "cover",
 							width: "100%",
+							height: "auto",
 						}}
 					/>
 				</Link>
 				<time dateTime={newsItem.date}>{newsItem.date}</time>
 			</header>
 			<p>{newsItem.content}</p>
-		</article>
+		</>
 	);
 }
