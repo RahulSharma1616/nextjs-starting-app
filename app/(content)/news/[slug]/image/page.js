@@ -23,7 +23,5 @@ async function FetchAndRenderImage({ params }) {
 		notFound();
 	}
 
-	return (
-		<Image src={`/images/news/${newsItem.image}`} alt={newsItem.title} fill />
-	);
+	return <Image src={`/images/news/${newsItem.image}`} alt={newsItem.title} />;
 }

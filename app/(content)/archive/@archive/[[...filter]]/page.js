@@ -9,20 +9,20 @@ import {
 	getNewsForYearAndMonth,
 } from "@/lib/news";
 
-export default function FilteredNewsPage({ params }) {
+export default function FilteredNewsPage(props) {
 	return (
 		<>
 			<header id="archive-header">
 				<nav>
 					<ul>
 						<Suspense fallback={<Loading />}>
-							<FetchAndRenderLinks params={params} />
+							<FetchAndRenderLinks {...props} />
 						</Suspense>
 					</ul>
 				</nav>
 			</header>
 			<Suspense fallback={<Loading />}>
-				<FetchAndRenderNews params={params} />
+				<FetchAndRenderNews {...props} />
 			</Suspense>
 		</>
 	);
@@ -69,7 +69,7 @@ async function FetchAndRenderNews({ params }) {
 	const [selectedYear, selectedMonth] = filter;
 
 	let news = [];
-	let newsContent = <p>No news found for the selected period.</p>;
+	let newsContent;
 
 	if (selectedYear && !selectedMonth) {
 		news = await getNewsForYear(selectedYear);
@@ -81,7 +81,9 @@ async function FetchAndRenderNews({ params }) {
 
 	if (news && news.length > 0) {
 		newsContent = <NewsList news={news} />;
+	} else {
+		newsContent = <p>No news found for the selected period.</p>;
 	}
 
-	return <>{newsContent}</>;
+	return <>{newsContent && newsContent}</>;
 }

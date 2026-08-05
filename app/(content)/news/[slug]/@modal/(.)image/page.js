@@ -1,11 +1,11 @@
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import { Suspense } from "react";
+import Loading from "@/app/loading";
 import { getAllNews } from "@/lib/news";
 import ModalBackdrop from "./modal-backdrop";
-import Loading from "@/app/loading";
 
-export default function InterceptedImagePage({ params }) {
+export default function InterceptedImagePage(props) {
 	return (
 		<>
 			<ModalBackdrop />
@@ -13,7 +13,7 @@ export default function InterceptedImagePage({ params }) {
 			<dialog className="modal" open>
 				<div className="fullscreen-image">
 					<Suspense fallback={<Loading />}>
-						<FetchAndRenderImage params={params} />
+						<FetchAndRenderImage {...props} />
 					</Suspense>
 				</div>
 			</dialog>

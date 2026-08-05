@@ -32,19 +32,16 @@ async function FetchAndRenderNewsDetail({ params }) {
 					style={{
 						display: "flex",
 						justifyContent: "center",
-
-						width: "80%",
-						marginInline: "auto",
 					}}
 				>
 					<Image
 						src={`/images/news/${newsItem.image}`}
 						alt={newsItem.title}
 						width={300}
-						height={400}
+						height={300}
 						style={{
 							objectFit: "cover",
-							width: "100%",
+							width: "30%",
 							height: "auto",
 						}}
 					/>
